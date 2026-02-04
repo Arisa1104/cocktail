@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Phone, Mail, Users, Wine, GlassWater, ChevronDown, CheckCircle, Loader2, Plus, Minus } from 'lucide-react';
 import formbricks from '@formbricks/js';
 
+import heroImage from './assets/images/hero-bar.jpg';
+import serviceBartending from './assets/images/service-bartending.jpg';
+import serviceClasses from './assets/images/service-classes.jpg';
+import serviceMixers from './assets/images/service-mixers.jpg';
+import gallery1 from './assets/images/gallery-1.jpg';
+import gallery2 from './assets/images/gallery-2.jpg';
+import gallery3 from './assets/images/gallery-3.jpg';
+import gallery4 from './assets/images/gallery-4.jpg';
+
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -46,6 +55,11 @@ const App = () => {
 
       setFormStatus('success');
       e.target.reset();
+
+      // Reset form status after 5 seconds to allow new submissions
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
     } catch (error) {
       console.error("Form submission error:", error);
       setFormStatus('error');
@@ -330,7 +344,11 @@ const App = () => {
   const faqData = [
     {
       question: "What Are Your Prices?",
-      answer: "We customize each package to meet the needs of your unique event. For this reason, we would love to hear as many details as possible first, in order to give you the most accurate quote by filing out our inquiry form. Base prices for cocktail classes and mixers are listed on each corresponding page per service. If you’re not sure exactly what you need, we are happy to help by arranging a call with you to get the process started! Simply send us an email at theclevelandcocktailcompany@gmail.com."
+      answer: (
+        <>
+          We customize each package to meet the needs of your unique event. For this reason, we would love to hear as many details as possible first, in order to give you the most accurate quote by filing out our inquiry form. Base prices for cocktail classes and mixers are listed on each corresponding page per service. If you’re not sure exactly what you need, we are happy to help by arranging a call with you to get the process started! Simply <button onClick={() => handleContactClick('general')} className="underline hover:text-stone-800 transition-colors cursor-pointer">reach out to us using the form</button>.
+        </>
+      )
     },
     {
       question: "What’s The Booking/Payment Process Like?",
@@ -356,7 +374,7 @@ const App = () => {
     return (
       <div className="border-b border-stone-200 last:border-0">
         <button
-          className="w-full py-6 flex justify-between items-center text-left group"
+          className="w-full py-6 flex justify-between items-center text-left group cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span className="font-display text-xl text-stone-800 group-hover:text-stone-600 transition-colors uppercase tracking-wide">
@@ -370,7 +388,7 @@ const App = () => {
           className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'
             }`}
         >
-          <p className="font-body font-light text-stone-600 leading-relaxed text-sm md:text-base">
+          <p className="font-body font-light text-stone-600 leading-relaxed text-base md:text-lg">
             {answer}
           </p>
         </div>
@@ -399,7 +417,7 @@ const App = () => {
                   if (item === 'Contact') handleContactClick('general');
                   else scrollToSection(item.toLowerCase());
                 }}
-                className="hover:text-stone-500 transition-colors relative group"
+                className="hover:text-stone-500 transition-colors relative group cursor-pointer"
               >
                 {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-stone-800 transition-all duration-300 group-hover:w-full"></span>
@@ -437,7 +455,7 @@ const App = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            src={heroImage}
             alt="Craft Cocktail"
             className="w-full h-full object-cover"
           />
@@ -450,19 +468,19 @@ const App = () => {
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight">
             A Mobile <br /> Bartending Experience
           </h1>
-          <p className="font-body font-light text-lg md:text-xl max-w-2xl mx-auto mb-10 text-stone-100">
+          <p className="font-body font-light text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-stone-100">
             Supplying North-East Ohio with high-quality, aesthetically pleasing drinks and bar rental options.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <button
               onClick={() => handleContactClick('bartending')}
-              className="bg-cream text-stone-900 px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white transition-colors duration-300"
+              className="bg-cream text-stone-900 px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white transition-colors duration-300 cursor-pointer"
             >
               Book Your Event
             </button>
             <button
               onClick={() => scrollToSection('services')}
-              className="border border-white text-white px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-colors duration-300"
+              className="border border-white text-white px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-colors duration-300 cursor-pointer"
             >
               Explore Services
             </button>
@@ -483,7 +501,7 @@ const App = () => {
             "We believe that the beverages we drink should receive the same level of attention to freshness and quality as the food we eat."
           </p>
           <div className="w-24 h-px bg-stone-400 mx-auto my-8"></div>
-          <p className="font-body font-light text-stone-600 leading-loose max-w-2xl mx-auto">
+          <p className="font-body font-light text-stone-600 leading-loose max-w-2xl mx-auto text-lg">
             We proudly source our farm-to-cocktail ingredients from markets within the Greater Cleveland area.
             Our team will always hand-squeeze, fresh-press, and infuse seasonal ingredients in-house, ensuring each sip of your drink is a moment to savor.
             Simply supply your own liquor and event location—then let us take care of the rest!
@@ -495,7 +513,7 @@ const App = () => {
       <section id="services" className="py-20 bg-cream-light">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="font-display text-4xl md:text-5xl text-center mb-6">Our Services</h2>
-          <p className="font-body font-light text-stone-600 text-center max-w-2xl mx-auto mb-16">
+          <p className="font-body font-light text-stone-600 text-center max-w-2xl mx-auto mb-16 text-lg">
             Our services include private event bartending, hosting cocktail classes and made-to-order pre-batched N/A cocktail mixers available for pick up.
           </p>
 
@@ -504,7 +522,7 @@ const App = () => {
             <div className="group relative overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src={serviceBartending}
                   alt="Event Bartending"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -512,10 +530,10 @@ const App = () => {
               <div className="p-8 text-center">
                 <GlassWater className="mx-auto mb-4 text-stone-400" size={32} />
                 <h3 className="font-display text-2xl mb-4">Event Bartending</h3>
-                <p className="font-body font-light text-stone-600 mb-6 text-sm">
+                <p className="font-body font-light text-stone-600 mb-6 text-base">
                   Private event bartending for weddings, corporate events, and parties. We bring the bar to you.
                 </p>
-                <button onClick={() => handleContactClick('bartending')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors">
+                <button onClick={() => handleContactClick('bartending')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors cursor-pointer">
                   Inquire Now
                 </button>
               </div>
@@ -525,7 +543,7 @@ const App = () => {
             <div id="classes" className="group relative overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1574096079513-d8259312b785?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src={serviceClasses}
                   alt="Cocktail Classes"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -533,10 +551,10 @@ const App = () => {
               <div className="p-8 text-center">
                 <Users className="mx-auto mb-4 text-stone-400" size={32} />
                 <h3 className="font-display text-2xl mb-4">Cocktail Classes</h3>
-                <p className="font-body font-light text-stone-600 mb-6 text-sm">
+                <p className="font-body font-light text-stone-600 mb-6 text-base">
                   Host a private class! Perfect for bachelorette parties, team building, or just for fun. Minimum 10 participants.
                 </p>
-                <button onClick={() => handleContactClick('classes')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors">
+                <button onClick={() => handleContactClick('classes')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors cursor-pointer">
                   Book a Class
                 </button>
               </div>
@@ -546,7 +564,7 @@ const App = () => {
             <div id="mixers" className="group relative overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src={serviceMixers}
                   alt="Batched Mixers"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
@@ -554,10 +572,10 @@ const App = () => {
               <div className="p-8 text-center">
                 <Wine className="mx-auto mb-4 text-stone-400" size={32} />
                 <h3 className="font-display text-2xl mb-4">Batched Mixers</h3>
-                <p className="font-body font-light text-stone-600 mb-6 text-sm">
+                <p className="font-body font-light text-stone-600 mb-6 text-base">
                   Freshly made batched non-alcoholic mixers for bulk pick up. Simply add your own liquor.
                 </p>
-                <button onClick={() => handleContactClick('mixers')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors">
+                <button onClick={() => handleContactClick('mixers')} className="text-xs font-bold uppercase tracking-widest border-b border-stone-300 pb-1 hover:border-stone-800 transition-colors cursor-pointer">
                   Order Mixers
                 </button>
               </div>
@@ -569,10 +587,10 @@ const App = () => {
       {/* Gallery Strip */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-1 p-1 bg-white">
         {[
-          "https://images.unsplash.com/photo-1516600164266-f3b8166ae679?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1583064313642-a7c149480c7e?auto=format&fit=crop&w=600&q=80"
+          gallery1,
+          gallery2,
+          gallery3,
+          gallery4
         ].map((src, i) => (
           <div key={i} className="aspect-square relative group overflow-hidden cursor-pointer">
             <img src={src} alt="Gallery" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -620,7 +638,7 @@ const App = () => {
               <button
                 type="submit"
                 disabled={formStatus === 'submitting' || formStatus === 'success'}
-                className={`bg-stone-800 text-cream-light px-10 py-4 uppercase tracking-widest text-sm hover:bg-stone-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 mx-auto min-w-[200px] ${formStatus === 'success' ? 'bg-green-700 hover:bg-green-800' : ''}`}
+                className={`bg-stone-800 text-cream-light px-10 py-4 uppercase tracking-widest text-sm hover:bg-stone-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 mx-auto min-w-[200px] cursor-pointer ${formStatus === 'success' ? 'bg-green-700 hover:bg-green-800' : ''}`}
               >
                 {formStatus === 'submitting' && <Loader2 className="animate-spin" size={18} />}
                 {formStatus === 'success' && <CheckCircle size={18} />}
