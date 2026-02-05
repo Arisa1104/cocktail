@@ -10,6 +10,8 @@ import gallery1 from './assets/images/gallery-1.jpg';
 import gallery2 from './assets/images/gallery-2.jpg';
 import gallery3 from './assets/images/gallery-3.jpg';
 import gallery4 from './assets/images/gallery-4.jpg';
+import logo from './assets/images/logo.png';
+import logoWhite from './assets/images/logo-white.png';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -105,7 +107,7 @@ const App = () => {
       )
     },
     classes: {
-      title: "Host A Cocktail Class With Us!",
+      title: "Cocktail Classes",
       subtitle: (
         <>
           Minimum of 10 participants per 2 hour private class.<br />
@@ -199,13 +201,16 @@ const App = () => {
       )
     },
     mixers: {
-      title: "Enjoy Our Drinks Without The Bartender",
+      title: "Mixers",
       subtitle: (
         <>
-          Have a gathering that you want beverages for but don't need full bar services for? Pre-order from our list of seasonal fresh batched N/A Mixers!<br /><br />
-          Simply add your own alcohol or sip it without. Our mixers are crafted to all to enjoy. $35/liter, 1L serves 8 drinks. Garnishes are offered for additional cost. Option to rent self serve canisters if you'd like to build your own cocktail station.<br />
-          This service is pick-up only and must be ordered/paid within 7 days of anticipated pick-up date.<br />
-          Consume mixers within 4 days from bottled date.
+          Simply add your own spirit of choice, or enjoy as a refreshing non-alcoholic sip.<br />
+
+          Pricing: $40 per 1-liter bottle (approximately 12 servings).<br />
+
+          Optional garnishes available for an additional fee.<br />
+
+          For optimal freshness and flavor, please consume within 4 days of the bottling date.
         </>
       ),
       fields: (
@@ -404,12 +409,12 @@ const App = () => {
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="text-xl md:text-2xl font-display font-bold tracking-widest uppercase cursor-pointer" onClick={() => scrollToSection('hero')}>
-            The Cleveland Cocktail Co.
+          <div className="cursor-pointer" onClick={() => scrollToSection('hero')}>
+            <img src={logo} alt="The Cleveland Cocktail Co." className="w-[100px] h-auto object-contain" />
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 font-body font-light tracking-wide text-sm uppercase">
+          <div className="hidden md:flex space-x-8 font-body font-light tracking-wide text-base uppercase">
             {['Services', 'Contact'].map((item) => (
               <button
                 key={item}
@@ -657,7 +662,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 
           <div className="text-center md:text-left">
-            <h3 className="font-display text-2xl text-cream mb-2">The Cleveland Cocktail Co.</h3>
+            <img src={logoWhite} alt="The Cleveland Cocktail Co." className="w-[175px] h-auto object-contain mb-4" />
             <p className="font-body font-light text-sm">Mobile Craft Cocktail Service</p>
           </div>
 
