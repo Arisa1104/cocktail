@@ -16,7 +16,7 @@ import logoWhite from './assets/images/logo-white.png';
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formType, setFormType] = useState('general'); // 'general', 'bartending', 'classes', 'mixers'
+  const [formType, setFormType] = useState('bartending'); // 'general', 'bartending', 'classes', 'mixers'
   const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
 
   // Initialize Formbricks
@@ -415,7 +415,7 @@ const App = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 font-body font-light tracking-wide text-base uppercase">
-            {['Services', 'Contact'].map((item) => (
+            {['Services'].map((item) => (
               <button
                 key={item}
                 onClick={() => {
@@ -439,7 +439,7 @@ const App = () => {
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
           <div className="absolute top-full left-0 right-0 bg-cream-light border-b border-stone-200 p-6 md:hidden flex flex-col space-y-4 shadow-xl">
-            {['Services', 'Contact'].map((item) => (
+            {['Services'].map((item) => (
               <button
                 key={item}
                 onClick={() => {
@@ -477,12 +477,6 @@ const App = () => {
             Supplying North-East Ohio with high-quality, aesthetically pleasing drinks and bar rental options.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button
-              onClick={() => handleContactClick('bartending')}
-              className="bg-cream text-stone-900 px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white transition-colors duration-300 cursor-pointer"
-            >
-              Book Your Event
-            </button>
             <button
               onClick={() => scrollToSection('services')}
               className="border border-white text-white px-8 py-3 rounded-sm font-body uppercase tracking-widest hover:bg-white hover:text-stone-900 transition-colors duration-300 cursor-pointer"
